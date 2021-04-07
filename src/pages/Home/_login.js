@@ -1,33 +1,27 @@
-import React from 'react'
+import React from "react";
 /** components */
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 /** icons */
-import EmailIcon from '@material-ui/icons/Email'
+import EmailIcon from "@material-ui/icons/Email";
 /** style */
-import * as El from './Home.style'
 /** svg */
-import { ReactComponent as LoginIcon }  from 'assets/images/login.svg'
+import { ReactComponent as LoginIcon } from "assets/images/login.svg";
 
-const Login = ({loginMethod, changeState}) => (
-  <El.HomeLogin>
-    <LoginIcon />
-    <Button
-      variant='contained'
-      color='secondary'
-      size='large'
-      startIcon={<EmailIcon />}
-      onClick={() => {
-        // setState({
-        //   ...state,
-        //   loading: true
-        // })
-        changeState({loading: true})
-        loginMethod()
-      }}
-    >
-      login google
-    </Button>
-  </El.HomeLogin>
-)
+const Login = ({ loginMethod, changeState }) => (
+  <div className=" flex flex-col justify-center">
+    <LoginIcon className="w-full h-auto my-6 mx-auto max-w-xs" />
+    <div className="text-center">
+      <button
+        className="button-lg "
+        onClick={() => {
+          changeState({ loading: true });
+          loginMethod();
+        }}
+      >
+        login with google
+      </button>
+    </div>
+  </div>
+);
 
-export default Login
+export default Login;
