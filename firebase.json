@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "planning-poker-hit",
+    "site": "get-the-point-c4a6b",
     "public": "build",
     "ignore": [
       "firebase.json",
