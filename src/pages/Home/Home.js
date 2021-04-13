@@ -17,36 +17,34 @@ const Home = () => {
   const { user, loginMethod } = useContext(SessionContext);
 
   const [form, setForm] = useState("");
-  const [state, setState] = useState({
-    loading: true,
-    createdRoom: false,
-    roomPayload: {},
-  });
+  const [loading, setLoading] = useState(true);
+  const [rooms, setRooms] = useState([]);
 
   const db = firebase.firestore();
 
   useEffect(() => {
     /** check available rooms */
     if (user.displayName) {
-      db.collection("users")
-        .doc(user.uid)
+      db.collection("rooms")
+        .where("roomOwner", "==", user.uid)
         .get()
-        .then((doc) => {
-          if (doc.exists) {
-            console.log("< VERIFY ROOM > ", doc.data());
-            setState({
-              ...state,
-              loading: false,
-              createdRoom: true,
-              roomPayload: doc.data(),
-            });
-          } else {
-            setState({ ...state, loading: false });
-          }
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            const roomDoc = doc.data();
+            if (doc.exists) {
+              setRooms((rooms) => [...rooms, roomDoc]);
+            } else {
+              console.log("< VERIFY ROOM > ", doc.data());
+
+              setLoading(false);
+            }
+            setLoading(false);
+          });
         })
         .catch((e) => console.warn("< GET ROOM : ERROR > ", e));
     } else {
-      setState({ ...state, loading: false, createdRoom: false });
+      setLoading(false);
     }
   }, [user]);
 
@@ -63,15 +61,14 @@ const Home = () => {
       .then((response) => {
         console.log("< CREATE ROOM : DONE > ", response);
 
-        setState({
-          ...state,
-          createdRoom: true,
-          roomPayload: {
-            roomOwner: user.uid,
-            roomName: form,
-            url: `/room/${form}`,
-          },
-        });
+        // setState({
+        //   ...state,
+        //   rooms: {
+        //     roomOwner: user.uid,
+        //     roomName: form,
+        //     url: `/room/${form}`,
+        //   },
+        // });
 
         db.collection("rooms")
           .doc(String(form))
@@ -93,29 +90,28 @@ const Home = () => {
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        {state.loading ? (
+        {loading ? (
           <Loading text="Loading..." />
         ) : (
           <>
             {!user?.displayName && (
               <Login
                 loginMethod={() => loginMethod()}
-                changeState={(value) => setState({ ...state, ...value })}
+                setLoading={setLoading}
               />
             )}
 
             {/** create room */}
-            {user?.displayName && !state.createdRoom && (
-              <CreateRoom
-                createRoom={() => createRoom()}
-                changeState={(value) => setForm(value)}
-              />
-            )}
+            {/* {user?.displayName && !state.createdRoom && ( */}
+            <CreateRoom
+              createRoom={() => createRoom()}
+              changeState={(value) => setForm(value)}
+            />
+            {/* // )} */}
 
             {/** access room */}
-            {user?.displayName && state.createdRoom && (
-              <AccessRoom link={state.roomPayload.url} />
-            )}
+            {user?.displayName &&
+              rooms.map((room) => <AccessRoom link={room.url} />)}
           </>
         )}
       </div>

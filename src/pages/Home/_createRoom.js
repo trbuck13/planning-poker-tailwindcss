@@ -50,7 +50,6 @@ const CreateRoom = ({ createRoom, changeState }) => {
   return (
     <form autoComplete="off" onKeyDown={handleKeys}>
       <div>
-        <ScrumIcon />
         <TextField
           required
           id="outlined-basic"

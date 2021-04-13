@@ -7,14 +7,14 @@ import EmailIcon from "@material-ui/icons/Email";
 /** svg */
 import { ReactComponent as LoginIcon } from "assets/images/login.svg";
 
-const Login = ({ loginMethod, changeState }) => (
+const Login = ({ loginMethod, setLoading }) => (
   <div className=" flex flex-col justify-center">
     <LoginIcon className="w-full h-auto my-6 mx-auto max-w-xs" />
     <div className="text-center">
       <button
         className="button-lg "
         onClick={() => {
-          changeState({ loading: true });
+          setLoading(true);
           loginMethod();
         }}
       >

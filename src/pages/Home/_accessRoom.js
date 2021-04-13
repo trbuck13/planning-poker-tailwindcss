@@ -10,7 +10,6 @@ import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 const AccessRoom = ({ link }) => (
   <div className=" flex flex-col justify-center">
-    <VoteIcon className="w-full h-auto my-6 mx-auto max-w-xs" />
     <div className="text-center">
       <Link to={`${link}`} class="button-lg ">
         go to {`${link}`}
