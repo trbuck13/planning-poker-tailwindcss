@@ -101,23 +101,25 @@ const Home = () => {
                   setLoading={setLoading}
                 />
               )}
-              <div className="flex">
-                <div className="w-1/4 border-r">
-                  <div className="pl-4 pt-4 border-b pb-4">My Rooms</div>
-                  <div class="flow-root">
-                    <ul class="divide-y divide-gray-200">
-                      {user?.displayName &&
-                        rooms.map((room) => <AccessRoom room={room} />)}
-                    </ul>
+              {user.displayName && (
+                <div className="flex">
+                  <div className="w-1/4 border-r">
+                    <div className="pl-4 pt-4 border-b pb-4">My Rooms</div>
+                    <div class="flow-root">
+                      <ul class="divide-y divide-gray-200">
+                        {user?.displayName &&
+                          rooms.map((room) => <AccessRoom room={room} />)}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="px-2 m-4 w-full">
+                    <CreateRoom
+                      createRoom={() => createRoom()}
+                      changeState={(value) => setForm(value)}
+                    />
                   </div>
                 </div>
-                <div className="px-2 m-4">
-                  <CreateRoom
-                    createRoom={() => createRoom()}
-                    changeState={(value) => setForm(value)}
-                  />
-                </div>
-              </div>
+              )}
             </>
           )}
         </div>

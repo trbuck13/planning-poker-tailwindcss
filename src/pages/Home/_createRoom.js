@@ -1,11 +1,6 @@
 import React, { useState, useCallback } from "react";
 /** components */
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-/** style */
-/** svg */
-import { ReactComponent as ScrumIcon } from "assets/images/scrum.svg";
-/** icons */
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 const debounce = (callback, delay) => {
@@ -48,23 +43,38 @@ const CreateRoom = ({ createRoom, changeState }) => {
   );
 
   return (
-    <form autoComplete="off" onKeyDown={handleKeys}>
-      <div>
-        <TextField
-          required
-          id="outlined-basic"
-          label="Room Name"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          onChange={(e) => verifyRoomName(e.target.value)}
-        />
-        {urlName !== "" && <h6>Url: {urlName}</h6>}
-        <button className="button-lg" onClick={() => createRoom()}>
-          Create Room <MeetingRoomIcon />
-        </button>
+    <div class="w-1/3 bg-gray-200 overflow-hidden rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <form autoComplete="off" onKeyDown={handleKeys}>
+          <div>
+            <div className="mb-4">
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Create Room
+              </label>
+              <div class="mt-1">
+                <input
+                  onChange={(e) => verifyRoomName(e.target.value)}
+                  type="text"
+                  name="email"
+                  id="email"
+                  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                  placeholder="My Room"
+                />
+              </div>
+            </div>
+            <button
+              className="button w-full justify-center"
+              onClick={() => createRoom()}
+            >
+              Create Room <MeetingRoomIcon />
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
 

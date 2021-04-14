@@ -1,12 +1,5 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-/** components */
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
-/** style */
 
 const Sidebar = ({ tasks }) =>
   useMemo(

@@ -71,15 +71,7 @@ const Room = () => {
                 <Typography variant="h6">
                   Please, you need to create/make login to access that room!
                 </Typography>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  startIcon={<EmailIcon />}
-                  onClick={() => loginMethod()}
-                >
-                  login google
-                </Button>
+                <button className="button-lg" onClick={() => loginMethod()}>Login google</button>
               </>
             )}
 
