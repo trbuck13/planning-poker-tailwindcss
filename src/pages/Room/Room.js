@@ -3,9 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { SessionContext } from "providers/Session";
 import Navbar from "components/Navbar/Navbar";
 import Board from "./_Board";
-import Button from "@material-ui/core/Button";
 import Loading from "components/Loading/Loading";
-import Typography from "@material-ui/core/Typography";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -63,23 +61,16 @@ const Room = () => {
           <>
             {!user?.displayName && (
               <>
-                <Typography variant="h6">
+                <div className="text-lg mb-4">
                   Please, you need to create/make login to access that room!
-                </Typography>
+                </div>
                 <button className="button-lg" onClick={() => loginMethod()}>Login google</button>
               </>
             )}
 
             {user?.displayName && !state.isValidRoom && (
-              <Link to="/">
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  fullWidth
-                >
+              <Link to="/" className="button">
                   Invalid Room
-                </Button>
               </Link>
             )}
 

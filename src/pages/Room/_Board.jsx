@@ -223,13 +223,25 @@ const Board = ({ user, roomName }) => {
                           state.roomOwner === user.uid &&
                           !state.showVotes && (
                             <div>
-                              <TextField
-                                label="Task Name"
-                                variant="outlined"
-                                size="small"
-                                onChange={(e) => updateTaskName(e.target.value)}
-                              />
-
+                              <div className="mb-4">
+                                <label
+                                  for="email"
+                                  class="block text-sm font-medium text-gray-700"
+                                >
+                                  Task Name
+                                </label>
+                                <div class="mt-1">
+                                  <input
+                                    onChange={(e) =>
+                                      updateTaskName(e.target.value)
+                                    }
+                                    type="text"
+                                    name="updateTaskName"
+                                    id="updateTaskName"
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                  />
+                                </div>
+                              </div>
                               <Button
                                 size="medium"
                                 color="secondary"
