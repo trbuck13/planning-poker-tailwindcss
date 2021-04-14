@@ -86,34 +86,41 @@ const Home = () => {
   };
 
   return (
-    <div className="">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        {loading ? (
-          <Loading text="Loading..." />
-        ) : (
-          <>
-            {!user?.displayName && (
-              <Login
-                loginMethod={() => loginMethod()}
-                setLoading={setLoading}
-              />
-            )}
-
-            {/** create room */}
-            {/* {user?.displayName && !state.createdRoom && ( */}
-            <CreateRoom
-              createRoom={() => createRoom()}
-              changeState={(value) => setForm(value)}
-            />
-            {/* // )} */}
-
-            {/** access room */}
-            {user?.displayName &&
-              rooms.map((room) => <AccessRoom link={room.url} />)}
-          </>
-        )}
+      <div className="-mt-12 pb-8 max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="rounded-lg bg-white overflow-hidden shadow">
+          {loading ? (
+            <Loading text="Loading..." />
+          ) : (
+            <>
+              {!user?.displayName && (
+                <Login
+                  loginMethod={() => loginMethod()}
+                  setLoading={setLoading}
+                />
+              )}
+              <div className="flex">
+                <div className="w-1/4 border-r">
+                  <div className="pl-4 pt-4 border-b pb-4">My Rooms</div>
+                  <div class="flow-root">
+                    <ul class="divide-y divide-gray-200">
+                      {user?.displayName &&
+                        rooms.map((room) => <AccessRoom room={room} />)}
+                    </ul>
+                  </div>
+                </div>
+                <div className="px-2 m-4">
+                  <CreateRoom
+                    createRoom={() => createRoom()}
+                    changeState={(value) => setForm(value)}
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -60,15 +60,9 @@ const CreateRoom = ({ createRoom, changeState }) => {
           onChange={(e) => verifyRoomName(e.target.value)}
         />
         {urlName !== "" && <h6>Url: {urlName}</h6>}
-        <Button
-          variant="contained"
-          color="secondary"
-          size="large"
-          fullWidth
-          onClick={() => createRoom()}
-        >
-          create room <MeetingRoomIcon />
-        </Button>
+        <button className="button-lg" onClick={() => createRoom()}>
+          Create Room <MeetingRoomIcon />
+        </button>
       </div>
     </form>
   );

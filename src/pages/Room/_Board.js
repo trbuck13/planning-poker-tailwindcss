@@ -133,8 +133,8 @@ const Board = ({ user, roomName }) => {
   );
 
   return (
-    <div className="flex bg-gray-100 min-h-screen p-6">
-      <div className="max-w-7xl flex w-full mx-auto px-2 sm:px-6 lg:px-8">
+    <div className="flex bg-gray-100 min-h-screen ">
+      <div className="-mt-12 flex w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/** sidebar */}
         <div className="w-1/4">
           <TaskNames tasks={state.tasks} />
