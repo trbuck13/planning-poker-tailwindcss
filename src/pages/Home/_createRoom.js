@@ -1,7 +1,4 @@
 import React, { useState, useCallback } from "react";
-/** components */
-import TextField from "@material-ui/core/TextField";
-import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 const debounce = (callback, delay) => {
   let interval;
@@ -69,7 +66,7 @@ const CreateRoom = ({ createRoom, changeState }) => {
               className="button w-full justify-center"
               onClick={() => createRoom()}
             >
-              Create Room <MeetingRoomIcon />
+              Create Room
             </button>
           </div>
         </form>

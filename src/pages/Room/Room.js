@@ -1,16 +1,11 @@
 import React, { useState, useEffect, memo, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-/** providers */
 import { SessionContext } from "providers/Session";
-/** components */
 import Navbar from "components/Navbar/Navbar";
 import Board from "./_Board";
 import Button from "@material-ui/core/Button";
 import Loading from "components/Loading/Loading";
 import Typography from "@material-ui/core/Typography";
-/** icons */
-import EmailIcon from "@material-ui/icons/Email";
-/** firebase */
 import firebase from "firebase/app";
 import "firebase/firestore";
 
